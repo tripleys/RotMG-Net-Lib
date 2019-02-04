@@ -43,8 +43,8 @@ Example class:
             {
                 BuildVersion = "X31.2.3",
                 GameId = reconnect.GameId,
-                Guid = RSA.Instance.Encrypt(""),
-                Password = RSA.Instance.Encrypt(""),
+                Guid = RSA.Instance.Encrypt("your email"),
+                Password = RSA.Instance.Encrypt("your password"),
                 Secret = RSA.Instance.Encrypt(""),
                 GameNet = "rotmg",
                 PlayPlatform = "rotmg"
