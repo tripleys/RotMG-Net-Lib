@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ADD0D140-20CA-41CA-A027-22331D6D8573}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RotMG_Net_Lib</RootNamespace>
+    <AssemblyName>RotMG Net Lib</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.4\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crypto\RC4.cs" />
+    <Compile Include="Crypto\RSA.cs" />
+    <Compile Include="Data\GameIds.cs" />
+    <Compile Include="Data\Reconnect.cs" />
+    <Compile Include="Models\GroundTileData.cs" />
+    <Compile Include="Models\MoveRecord.cs" />
+    <Compile Include="Models\ObjectData.cs" />
+    <Compile Include="Models\ObjectStatusData.cs" />
+    <Compile Include="Models\SlotObjectData.cs" />
+    <Compile Include="Models\StatData.cs" />
+    <Compile Include="Models\TradeItem.cs" />
+    <Compile Include="Models\TradeResult.cs" />
+    <Compile Include="Models\WorldPosData.cs" />
+    <Compile Include="Networking\NetClient.cs" />
+    <Compile Include="Networking\Packets\IncomingPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\AccountListPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\AllyShootPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\AoePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\ClientStatPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\CreateSuccessPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\DamagePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\DeathPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\EnemyShootPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\FailurePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\GlobalNotificationPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\GotoPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\GuildResultPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\KeyInfoResponsePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\MapInfoPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\NameResultPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\NewTickPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\NotificationPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\PingPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\QuestObjIdPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\QuestRedeemResponsePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\RealmHeroesResponsePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\ReconnectPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\ReskinUnlockPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\ServerPlayerShootPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\ShowEffectPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\TextPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\TradeAcceptedPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\TradeChangedPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\TradeDonePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\TradeRequestedPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\TradeStartPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\UpdatePacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\VerifyEmailPacket.cs" />
+    <Compile Include="Networking\Packets\OutgoingPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\AcceptTradePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\ActivePetUpdateRequestPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\AoeAckPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\BuyPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\CancelTradePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\ChangeGuildRankPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\ChangePetSkinPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\ChangeTradePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\ChatHelloPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\ChooseNamePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\CreatePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\EditAccountListPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\EnemyHitPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\EscapePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\GotoAckPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\GoToQuestRoomPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\GroundDamagePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\GuildInvitePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\GuildRemovePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\HelloPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\InvDropPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\InvSwapPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\JoinGuildPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\KeyInfoRequestPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\LoadPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\MovePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\OtherHitPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\PlayerHitPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\PlayerShootPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\PlayerTextPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\PongPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\RequestTradePacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\SetConditionPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\ShootAckPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\SquareHitPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\TeleportPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\UpdateAckPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\UseItemPacket.cs" />
+    <Compile Include="Networking\Packets\Outgoing\UsePortalPacket.cs" />
+    <Compile Include="Networking\Packets\PacketInput.cs" />
+    <Compile Include="Networking\Packets\PacketOutput.cs" />
+    <Compile Include="Networking\Packets\PacketType.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
