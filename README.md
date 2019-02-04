@@ -4,8 +4,8 @@ Realm of the Mad God Networking C# Library
 You can use this library to implement your own Realm of the Mad God bots.
 
 Example class:
-```
-class Program
+```csharp
+    class Program
     {
         static void Main(string[] args)
         {
