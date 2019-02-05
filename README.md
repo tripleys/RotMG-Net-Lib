@@ -3,6 +3,8 @@ Realm of the Mad God Networking C# Library
 
 You can use this library to implement your own Realm of the Mad God bots.
 
+Check this if you want to use Java library: https://github.com/tripleys/RotMG-Net-JLib
+
 Example class:
 ```csharp
     class Program
