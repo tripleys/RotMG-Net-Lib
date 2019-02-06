@@ -16,6 +16,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public float Duration;
         public ushort OrigType;
         public int Color;
+        public bool ArmorPierce;
 
         public override PacketType GetPacketType() => PacketType.Aoe;
 
@@ -28,6 +29,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
             Duration = input.ReadSingle();
             OrigType = input.ReadUInt16();
             Color = input.ReadInt32();
+            ArmorPierce = input.ReadBoolean();
         }
     }
 }
