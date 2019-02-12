@@ -162,6 +162,7 @@ namespace RotMG_Net_Lib.Networking
 
         public void SendPacket(OutgoingPacket packet)
         {
+            if (!_socket.Connected) return;
             MemoryStream ms = new MemoryStream();
             using (PacketOutput output = new PacketOutput(ms))
             {
@@ -177,11 +178,12 @@ namespace RotMG_Net_Lib.Networking
             buffer[1] = a[1];
             buffer[2] = a[2];
             buffer[3] = a[3];
-            _socket.Send(buffer);
+            _socket?.Send(buffer);
         }
 
         public void Disconnect()
         {
+
             if (!Disconnected)
             {
                 Disconnected = true;
