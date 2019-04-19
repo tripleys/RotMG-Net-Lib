@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{ADD0D140-20CA-41CA-A027-22331D6D8573}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>RotMG_Net_Lib</RootNamespace>
     <AssemblyName>RotMG Net Lib</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -38,6 +38,9 @@
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.4\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -137,6 +140,7 @@
     <Compile Include="Networking\Packets\Outgoing\UpdateAckPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\UseItemPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\UsePortalPacket.cs" />
+    <Compile Include="Networking\Packets\Packets.cs" />
     <Compile Include="Networking\Packets\PacketInput.cs" />
     <Compile Include="Networking\Packets\PacketOutput.cs" />
     <Compile Include="Networking\Packets\PacketType.cs" />

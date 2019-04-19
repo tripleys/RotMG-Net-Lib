@@ -137,7 +137,7 @@ namespace RotMG_Net_Lib.Networking
                 received += read;
             }
             _incomingEncryption.Cipher(buffer, 0);
-            PacketType packetType = (PacketType)type;
+            PacketType packetType = type.ToPacketType();
             IncomingPacket packet = IncomingPacket.Create(packetType);
             if (packet != null && _hooks.ContainsKey(packetType))
             {
@@ -167,7 +167,7 @@ namespace RotMG_Net_Lib.Networking
             using (PacketOutput output = new PacketOutput(ms))
             {
                 output.Write(0);
-                output.Write((byte)packet.GetPacketType());
+                output.Write(packet.GetPacketType().ToId());
                 packet.Write(output);
             }
             byte[] buffer = ms.ToArray();

@@ -1,4 +1,5 @@
-﻿using RotMG_Net_Lib.Crypto;
+﻿using Newtonsoft.Json;
+using RotMG_Net_Lib.Crypto;
 using RotMG_Net_Lib.Data;
 using RotMG_Net_Lib.Networking;
 using RotMG_Net_Lib.Networking.Packets;
@@ -6,6 +7,7 @@ using RotMG_Net_Lib.Networking.Packets.Incoming;
 using RotMG_Net_Lib.Networking.Packets.Outgoing;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -17,6 +19,8 @@ namespace RotMG_Net_Lib
     {
         static void Main(string[] args)
         {
+            Packets.Load("Packets.json");
+
             Reconnect reconnect = new Reconnect()
             {
                 Host = "54.93.78.148",
