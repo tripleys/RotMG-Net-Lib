@@ -11,6 +11,8 @@ Example class:
     {
         static void Main(string[] args)
         {
+            Packets.Load("Packets.json");
+        
             Reconnect reconnect = new Reconnect()
             {
                 Host = "54.93.78.148",
