@@ -5,41 +5,54 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace RotMG_Net_Lib.Networking.Packets
 {
 
     public static class Packets
     {
-        public static Dictionary<PacketType, byte> Ids = new Dictionary<PacketType, byte>();
-        public static Dictionary<byte, PacketType> Types = new Dictionary<byte, PacketType>();
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-        public static void Load(string path)
+        private static Dictionary<byte, PacketType> PacketTypes = new Dictionary<byte, PacketType>();
+
+        static Packets()
         {
-            PacketData[] data = JsonConvert.DeserializeObject<PacketData[]>(File.ReadAllText(path));
-            foreach(var p in data)
+            foreach (Type i in typeof(OutgoingPacket).Assembly.GetTypes())
             {
-                PacketType type = (PacketType)Enum.Parse(typeof(PacketType), p.Type);
-                Ids.Add(type, p.Id);
-                Types.Add(p.Id, type);
+                if (typeof(OutgoingPacket).IsAssignableFrom(i) && !i.IsAbstract)
+                {
+                    OutgoingPacket pkt = (OutgoingPacket) Activator.CreateInstance(i);
+                    PacketTypes[(byte) pkt.GetPacketType()] = pkt.GetPacketType();
+                }
             }
+
+            foreach (Type i in typeof(IncomingPacket).Assembly.GetTypes())
+            {
+                if (typeof(IncomingPacket).IsAssignableFrom(i) && !i.IsAbstract)
+                {
+                    IncomingPacket pkt = (IncomingPacket) Activator.CreateInstance(i);
+                    PacketTypes[(byte) pkt.GetPacketType()] = pkt.GetPacketType();
+                }
+            }
+
+            Log.Info("Added " + PacketTypes.Count + " packets.");
         }
 
         public static byte ToId(this PacketType type)
         {
-            return Ids[type];
+            return (byte) PacketTypes[(byte) type];
         }
 
         public static PacketType ToPacketType(this byte id)
         {
-            return Types[id];
+            if (!PacketTypes.ContainsKey(id))
+            {
+                Log.Error("Fatal, packet id '" + id + "' not found.");
+            }
+
+            return PacketTypes[id];
         }
 
-    }
-
-    class PacketData
-    {
-        public string Type;
-        public byte Id;
     }
 }

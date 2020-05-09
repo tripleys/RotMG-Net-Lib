@@ -12,15 +12,16 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace RotMG_Net_Lib
 {
     class Program
     {
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         static void Main(string[] args)
         {
-            Packets.Load("Packets.json");
-
             Reconnect reconnect = new Reconnect()
             {
                 Host = "54.93.78.148",
@@ -32,7 +33,7 @@ namespace RotMG_Net_Lib
             NetClient client = new NetClient(reconnect);
             client.Hook(PacketType.Failure, (p) =>
             {
-                Console.WriteLine("Failure: " + ((FailurePacket)p).ErrorDescription);
+                Log.Error("Failure: " + ((FailurePacket)p).ErrorDescription);
             });
             client.Hook(PacketType.MapInfo, (p) =>
             {
@@ -49,7 +50,7 @@ namespace RotMG_Net_Lib
             });
             client.Hook(PacketType.NewTick, (p) =>
             {
-                Console.WriteLine("NEW_TICK, id: " + ((NewTickPacket) p).TickId);
+                Log.Debug("NEW_TICK, id: " + ((NewTickPacket) p).TickId);
             });
             HelloPacket hello = new HelloPacket()
             {

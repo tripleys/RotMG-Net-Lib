@@ -10,11 +10,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NLog;
 
 namespace RotMG_Net_Lib.Networking
 {
     public class NetClient
     {
+        
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         private const int HeadSize = 5;
 
@@ -79,7 +82,7 @@ namespace RotMG_Net_Lib.Networking
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Log.Error(e);
                 Disconnect();
             }
         }
@@ -88,7 +91,6 @@ namespace RotMG_Net_Lib.Networking
         {
             try
             {
-
 
                 while (!Disconnected)
                 {
@@ -113,7 +115,7 @@ namespace RotMG_Net_Lib.Networking
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Log.Error(e);
             }
             finally
             {
@@ -154,7 +156,7 @@ namespace RotMG_Net_Lib.Networking
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e);
+                        Log.Info(e);
                     }
                 }
             }
