@@ -36,7 +36,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
             PreviousConnectionGuid = string.Empty;
         }
 
-        public override PacketType GetPacketType() => PacketType.Hello;
+        public override PacketType GetPacketType() => PacketType.HELLO;
 
         public override void Write(PacketOutput output)
         {

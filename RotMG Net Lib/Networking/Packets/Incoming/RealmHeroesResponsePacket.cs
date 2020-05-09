@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.NetLib.Networking.Packets.Incoming
 {
     public class RealmHeroesResponsePacket : IncomingPacket
     {
         public int NumberOfRealmHeroes;
 
-        public override PacketType GetPacketType() => PacketType.RealmHeroLeftMsg;
+        public override PacketType GetPacketType() => PacketType.REALM_HERO_LEFT_MSG;
 
         public override void Read(PacketInput input)
         {

@@ -1,9 +1,4 @@
-﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
@@ -12,20 +7,17 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         public int TickId;
         public int Time;
         public WorldPosData NewPosition;
-        public List<MoveRecord> Records;
+        public List<MoveRecord> Records = new List<MoveRecord>();
 
-        public override PacketType GetPacketType() => PacketType.Move;
+        public override PacketType GetPacketType() => PacketType.MOVE;
 
         public override void Write(PacketOutput output)
         {
-            if (Records == null)
-                Records = new List<MoveRecord>();
-            
             output.Write(TickId);
             output.Write(Time);
             NewPosition.Write(output);
             output.Write((short) Records.Count);
-            foreach(var record in Records)
+            foreach (var record in Records)
             {
                 record.Write(output);
             }

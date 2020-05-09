@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class TradeAcceptedPacket : IncomingPacket
     {
         public bool[] ClientOffer;
         public bool[] PartnerOffer;
 
-        public override PacketType GetPacketType() => PacketType.TradeAccepted;
+        public override PacketType GetPacketType() => PacketType.TRADEACCEPTED;
 
         public override void Read(PacketInput input)
         {

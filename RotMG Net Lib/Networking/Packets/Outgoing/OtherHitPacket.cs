@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class OtherHitPacket : OutgoingPacket
     {
@@ -13,7 +7,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         public int ObjectId;
         public int TargetId;
 
-        public override PacketType GetPacketType() => PacketType.OtherHit;
+        public override PacketType GetPacketType() => PacketType.OTHERHIT;
 
         public override void Write(PacketOutput output)
         {

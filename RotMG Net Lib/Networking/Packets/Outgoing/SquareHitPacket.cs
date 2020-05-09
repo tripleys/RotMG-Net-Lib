@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class SquareHitPacket : OutgoingPacket
     {
@@ -12,7 +6,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         public byte BulletId;
         public int ObjectId;
 
-        public override PacketType GetPacketType() => PacketType.SquareHit;
+        public override PacketType GetPacketType() => PacketType.SQUAREHIT;
 
         public override void Write(PacketOutput output)
         {

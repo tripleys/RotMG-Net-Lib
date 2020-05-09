@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class PongPacket : OutgoingPacket
     {
@@ -12,7 +6,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 
         public int Time;
 
-        public override PacketType GetPacketType() => PacketType.Pong;
+        public override PacketType GetPacketType() => PacketType.PONG;
 
         public override void Write(PacketOutput output)
         {

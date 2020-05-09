@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class ReconnectPacket : IncomingPacket
     {
@@ -17,7 +11,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public byte[] Key;
         public bool IsFromArena;
 
-        public override PacketType GetPacketType() => PacketType.Reconnect;
+        public override PacketType GetPacketType() => PacketType.RECONNECT;
 
         public override void Read(PacketInput input)
         {

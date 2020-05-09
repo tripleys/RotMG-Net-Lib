@@ -1,11 +1,4 @@
-﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class TradeDonePacket : IncomingPacket
     {
@@ -14,7 +7,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
 
         public string Description;
 
-        public override PacketType GetPacketType() => PacketType.TradeDone;
+        public override PacketType GetPacketType() => PacketType.TRADEDONE;
 
         public override void Read(PacketInput input)
         {

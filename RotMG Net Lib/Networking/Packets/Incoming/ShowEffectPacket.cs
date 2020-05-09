@@ -1,11 +1,4 @@
-﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class ShowEffectPacket : IncomingPacket
     {
@@ -16,7 +9,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public int Color;
         public float Duration;
 
-        public override PacketType GetPacketType() => PacketType.ShowEffect;
+        public override PacketType GetPacketType() => PacketType.SHOWEFFECT;
 
         public override void Read(PacketInput input)
         {

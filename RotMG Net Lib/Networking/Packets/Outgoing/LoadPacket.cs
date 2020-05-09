@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class LoadPacket : OutgoingPacket
     {
@@ -13,7 +7,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         public bool IsFromArena;
         public bool IsChallenger;
 
-        public override PacketType GetPacketType() => PacketType.Load;
+        public override PacketType GetPacketType() => PacketType.LOAD;
 
         public override void Write(PacketOutput output)
         {

@@ -1,11 +1,4 @@
-﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class GotoPacket : IncomingPacket
     {
@@ -14,7 +7,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
 
         public WorldPosData Pos;
 
-        public override PacketType GetPacketType() => PacketType.Goto;
+        public override PacketType GetPacketType() => PacketType.GOTO;
 
         public override void Read(PacketInput input)
         {

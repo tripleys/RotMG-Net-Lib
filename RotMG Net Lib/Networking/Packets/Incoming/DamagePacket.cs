@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class DamagePacket : IncomingPacket
     {
@@ -16,7 +10,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public byte BulletId;
         public int ObjectId;
 
-        public override PacketType GetPacketType() => PacketType.Damage;
+        public override PacketType GetPacketType() => PacketType.DAMAGE;
 
         public override void Read(PacketInput input)
         {

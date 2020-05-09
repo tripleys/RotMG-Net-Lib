@@ -1,11 +1,4 @@
-﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class PlayerShootPacket : OutgoingPacket
     {
@@ -15,7 +8,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         public WorldPosData StartingPos;
         public float Angle;
 
-        public override PacketType GetPacketType() => PacketType.PlayerShoot;
+        public override PacketType GetPacketType() => PacketType.PLAYERSHOOT;
 
         public override void Write(PacketOutput output)
         {

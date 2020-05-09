@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class MapInfoPacket : IncomingPacket
     {
+
         public int Width;
         public int Height;
         public string Name;
@@ -18,10 +13,10 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public int Background;
         public bool AllowPlayerTeleport;
         public bool ShowDisplays;
-        public string ConnectionGuid;
+        public string connectionGuid;
         public int MaxPlayers;
 
-        public override PacketType GetPacketType() => PacketType.MapInfo;
+        public override PacketType GetPacketType() => PacketType.MAPINFO;
 
         public override void Read(PacketInput input)
         {
@@ -36,7 +31,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
             AllowPlayerTeleport = input.ReadBoolean();
             ShowDisplays = input.ReadBoolean();
             MaxPlayers = input.ReadInt16();
-            ConnectionGuid = input.ReadUTF();
+            connectionGuid = input.ReadUTF();
         }
     }
 }

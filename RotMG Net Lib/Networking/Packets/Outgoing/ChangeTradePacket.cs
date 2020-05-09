@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class ChangeTradePacket : OutgoingPacket
     {
         public bool[] Offer;
 
-        public override PacketType GetPacketType() => PacketType.ChangeTrade;
+        public override PacketType GetPacketType() => PacketType.CHANGETRADE;
 
         public override void Write(PacketOutput output)
         {

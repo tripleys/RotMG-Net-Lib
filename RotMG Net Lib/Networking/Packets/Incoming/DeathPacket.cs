@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class DeathPacket : IncomingPacket
     {
@@ -15,7 +9,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public int ZombieType;
         public bool IsZombie;
 
-        public override PacketType GetPacketType() => PacketType.Death;
+        public override PacketType GetPacketType() => PacketType.DEATH;
 
         public override void Read(PacketInput input)
         {

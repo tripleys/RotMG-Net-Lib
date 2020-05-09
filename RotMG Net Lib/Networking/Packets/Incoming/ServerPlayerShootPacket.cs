@@ -1,11 +1,4 @@
-﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class ServerPlayerShootPacket : IncomingPacket
     {
@@ -16,7 +9,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public float Angle;
         public short Damage;
 
-        public override PacketType GetPacketType() => PacketType.ServerPlayerShoot;
+        public override PacketType GetPacketType() => PacketType.SERVERPLAYERSHOOT;
 
         public override void Read(PacketInput input)
         {
