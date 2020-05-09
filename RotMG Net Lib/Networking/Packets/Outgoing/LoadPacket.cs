@@ -11,6 +11,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 
         public int CharId;
         public bool IsFromArena;
+        public bool IsChallenger;
 
         public override PacketType GetPacketType() => PacketType.Load;
 
@@ -18,6 +19,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         {
             output.Write(CharId);
             output.Write(IsFromArena);
+            output.Write(IsChallenger);
         }
     }
 }
