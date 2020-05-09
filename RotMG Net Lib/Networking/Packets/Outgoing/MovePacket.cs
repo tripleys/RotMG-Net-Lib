@@ -18,13 +18,14 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 
         public override void Write(PacketOutput output)
         {
-            Records ??= new List<MoveRecord>();
-
+            if (Records == null)
+                Records = new List<MoveRecord>();
+            
             output.Write(TickId);
             output.Write(Time);
             NewPosition.Write(output);
             output.Write((short) Records.Count);
-            foreach (var record in Records)
+            foreach(var record in Records)
             {
                 record.Write(output);
             }
