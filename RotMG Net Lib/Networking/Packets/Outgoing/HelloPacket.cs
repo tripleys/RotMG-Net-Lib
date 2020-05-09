@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class HelloPacket : OutgoingPacket
     {
-
         public string BuildVersion;
         public int GameId;
         public string Guid;
@@ -23,6 +18,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         public string PlayPlatform;
         public string PlatformToken;
         public string UserToken;
+        public string PreviousConnectionGuid;
 
         public HelloPacket()
         {
@@ -37,6 +33,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
             PlayPlatform = string.Empty;
             PlatformToken = string.Empty;
             UserToken = string.Empty;
+            PreviousConnectionGuid = string.Empty;
         }
 
         public override PacketType GetPacketType() => PacketType.Hello;
@@ -61,6 +58,8 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
             output.WriteUTF(PlayPlatform);
             output.WriteUTF(PlatformToken);
             output.WriteUTF(UserToken);
+            output.WriteUTF("XTeP7hERdchV5jrBZEYNebAqDPU6tKU6");
+            output.WriteUTF("");
         }
     }
 }
