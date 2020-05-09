@@ -10,6 +10,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
     {
         public short ClassType;
         public short SkinType;
+        public bool IsChallenger;
 
         public override PacketType GetPacketType() => PacketType.Create;
 
@@ -17,6 +18,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         {
             output.Write(ClassType);
             output.Write(SkinType);
+            output.Write(IsChallenger);
         }
     }
 }
