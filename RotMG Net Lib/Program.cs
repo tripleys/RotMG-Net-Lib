@@ -56,7 +56,7 @@ namespace RotMG_Net_Lib
             });
             HelloPacket hello = new HelloPacket()
             {
-                BuildVersion = "X31.2.3",
+                BuildVersion = Constants.Game.Version,
                 GameId = reconnect.GameId,
                 Guid = RSA.Instance.Encrypt(""),
                 Password = RSA.Instance.Encrypt(""),
