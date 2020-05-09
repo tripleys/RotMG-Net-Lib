@@ -69,10 +69,8 @@
     <Compile Include="Constants\Game.cs" />
     <Compile Include="Crypto\RC4.cs" />
     <Compile Include="Crypto\RSA.cs" />
-    <Compile Include="Data\Account.cs" />
     <Compile Include="Data\GameIds.cs" />
     <Compile Include="Data\Reconnect.cs" />
-    <Compile Include="Data\Server.cs" />
     <Compile Include="Models\GroundTileData.cs" />
     <Compile Include="Models\MoveRecord.cs" />
     <Compile Include="Models\ObjectData.cs" />

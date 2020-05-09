@@ -4,12 +4,9 @@ using RotMG_Net_Lib.Networking.Packets;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using NLog;
 using Starksoft.Aspen.Proxy;
 
@@ -17,7 +14,7 @@ namespace RotMG_Net_Lib.Networking
 {
     public class NetClient
     {
-        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+        public static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         private const int HeadSize = 5;
 
@@ -34,9 +31,6 @@ namespace RotMG_Net_Lib.Networking
 
         public bool Disconnected = true;
         private readonly bool DebugPackets = false;
-
-        public NetClient(Reconnect reconnect) => Connect(reconnect);
-        public NetClient(Reconnect reconnect, string proxyHost, int proxyPort) => Connect(reconnect, proxyHost, proxyPort);
 
         public void Connect(Reconnect reconnect, string proxyHost = null, int proxyport = 0)
         {
@@ -66,8 +60,7 @@ namespace RotMG_Net_Lib.Networking
             Start();
             _onConnect?.Invoke();
         }
-
-
+        
         public void AddConnectionListener(Action onConnect)
         {
             this._onConnect += onConnect;
@@ -221,7 +214,7 @@ namespace RotMG_Net_Lib.Networking
                 _socket?.Close();
             }
         }
-        
+
         protected int GetTimer()
         {
             return (int) Environment.TickCount;
