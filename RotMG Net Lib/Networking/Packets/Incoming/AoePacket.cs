@@ -22,7 +22,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
 
         public override void Read(PacketInput input)
         {
-            Pos.Read(input);
+            Pos = new WorldPosData().Read(input);
             Radius = input.ReadSingle();
             Damage = input.ReadUInt16();
             Effect = input.ReadByte();
