@@ -46,6 +46,10 @@
       <HintPath>..\packages\NLog.4.7.0\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="starksoft.aspen, Version=1.1.8.0, Culture=neutral, PublicKeyToken=56b8923a24d03eb3">
+      <HintPath>..\packages\starksoft.aspen.1.1.8\lib\net45\starksoft.aspen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -74,6 +78,7 @@
     <Compile Include="Models\TradeItem.cs" />
     <Compile Include="Models\TradeResult.cs" />
     <Compile Include="Models\WorldPosData.cs" />
+    <Compile Include="Networking\DisconnectReason.cs" />
     <Compile Include="Networking\NetClient.cs" />
     <Compile Include="Networking\Packets\IncomingPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\AccountListPacket.cs" />

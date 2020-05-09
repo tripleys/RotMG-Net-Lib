@@ -30,7 +30,9 @@ namespace RotMG_Net_Lib
                 KeyTime = 0,
                 Key = new byte[0]
             };
+            
             NetClient client = new NetClient(reconnect);
+            
             client.Hook(PacketType.FAILURE, (p) =>
             {
                 Log.Error("Failure: " + ((FailurePacket)p).ErrorDescription);
