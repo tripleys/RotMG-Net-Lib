@@ -1,4 +1,4 @@
-﻿namespace RotMG_Net_Lib.NetLib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class PlaySoundPacket : IncomingPacket
     {

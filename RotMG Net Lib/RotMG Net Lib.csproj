@@ -119,7 +119,6 @@
     <Compile Include="Networking\Packets\Outgoing\ChangeGuildRankPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\ChangePetSkinPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\ChangeTradePacket.cs" />
-    <Compile Include="Networking\Packets\Outgoing\ChatHelloPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\ChooseNamePacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\CreatePacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\EditAccountListPacket.cs" />

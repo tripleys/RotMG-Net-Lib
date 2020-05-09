@@ -1,4 +1,6 @@
-﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿using RotMG_Net_Lib.Models;
+
+namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class AoeAckPacket : OutgoingPacket
     {

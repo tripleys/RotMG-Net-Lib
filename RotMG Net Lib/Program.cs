@@ -31,11 +31,11 @@ namespace RotMG_Net_Lib
                 Key = new byte[0]
             };
             NetClient client = new NetClient(reconnect);
-            client.Hook(PacketType.Failure, (p) =>
+            client.Hook(PacketType.FAILURE, (p) =>
             {
                 Log.Error("Failure: " + ((FailurePacket)p).ErrorDescription);
             });
-            client.Hook(PacketType.MapInfo, (p) =>
+            client.Hook(PacketType.MAPINFO, (p) =>
             {
                 LoadPacket load = new LoadPacket()
                 {
@@ -44,11 +44,11 @@ namespace RotMG_Net_Lib
                 };
                 client.SendPacket(load);
             });
-            client.Hook(PacketType.Update, (p) =>
+            client.Hook(PacketType.UPDATE, (p) =>
             {
                 client.SendPacket(new UpdateAckPacket());
             });
-            client.Hook(PacketType.NewTick, (p) =>
+            client.Hook(PacketType.NEWTICK, (p) =>
             {
                 Log.Debug("NEW_TICK, id: " + ((NewTickPacket) p).TickId);
             });

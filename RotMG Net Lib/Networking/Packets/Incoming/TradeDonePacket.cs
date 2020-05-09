@@ -1,4 +1,6 @@
-﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿using RotMG_Net_Lib.Models;
+
+namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class TradeDonePacket : IncomingPacket
     {

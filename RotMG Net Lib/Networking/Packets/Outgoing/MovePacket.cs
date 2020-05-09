@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RotMG_Net_Lib.Models;
 
 namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
