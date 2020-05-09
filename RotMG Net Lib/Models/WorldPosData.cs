@@ -25,10 +25,11 @@ namespace RotMG_Net_Lib.Models
             this.Y = Y;
         }
 
-        public void Read(PacketInput input)
+        public WorldPosData Read(PacketInput input)
         {
             X = input.ReadSingle();
             Y = input.ReadSingle();
+            return this;
         }
 
         public void Write(PacketOutput output)
