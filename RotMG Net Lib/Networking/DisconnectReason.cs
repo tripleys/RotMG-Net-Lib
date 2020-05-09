@@ -2,13 +2,10 @@
 {
     public class DisconnectReason
     {
-        public static readonly DisconnectReason EOFHead = new DisconnectReason("End of file on head");
-        public static readonly DisconnectReason EOFBody = new DisconnectReason("End of file on body");
+        public static readonly DisconnectReason EofHead = new DisconnectReason("End of file on head");
+        public static readonly DisconnectReason EofBody = new DisconnectReason("End of file on body");
         public static readonly DisconnectReason ExceptionOnListener = new DisconnectReason("Exception on listener");
         public static readonly DisconnectReason ExceptionOnListenerStart = new DisconnectReason("Exception on listener start");
-        public static readonly DisconnectReason DutyFailed = new DisconnectReason("Duty failed");
-        public static readonly DisconnectReason EmailVerificationNeeded = new DisconnectReason("Email verification needed");
-        public static readonly DisconnectReason ProtocolError7 = new DisconnectReason("Protocol error 7");
 
         public readonly string Reason;
 

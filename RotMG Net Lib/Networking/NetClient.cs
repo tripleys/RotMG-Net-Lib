@@ -117,7 +117,7 @@ namespace RotMG_Net_Lib.Networking
                         if (read == 0)
                         {
                             // eof
-                            Disconnect(DisconnectReason.EOFHead);
+                            Disconnect(DisconnectReason.EofHead);
                             return;
                         }
 
@@ -149,7 +149,7 @@ namespace RotMG_Net_Lib.Networking
                 if (read == 0)
                 {
                     // eof
-                    Disconnect(DisconnectReason.EOFBody);
+                    Disconnect(DisconnectReason.EofBody);
                     return;
                 }
 
