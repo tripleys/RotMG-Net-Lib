@@ -85,6 +85,7 @@
     <Compile Include="Networking\Packets\Incoming\NewTickPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\NotificationPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\PingPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\PlaySoundPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\QuestObjIdPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\QuestRedeemResponsePacket.cs" />
     <Compile Include="Networking\Packets\Incoming\RealmHeroesResponsePacket.cs" />

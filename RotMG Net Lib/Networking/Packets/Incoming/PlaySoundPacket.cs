@@ -1,11 +1,13 @@
-namespace RotMG_Net_Lib.NetLib.Networking.Packets.Incoming
+
+
+namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class PlaySoundPacket : IncomingPacket
     {
         public int OwnerId;
         public int SoundId;
 
-        public override PacketType GetPacketType() => PacketType.PLAYSOUND;
+        public override PacketType GetPacketType() => PacketType.PlaySound;
         
         public override void Read(PacketInput input)
         {

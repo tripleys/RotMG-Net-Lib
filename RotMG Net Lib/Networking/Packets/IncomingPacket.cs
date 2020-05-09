@@ -77,6 +77,8 @@ namespace RotMG_Net_Lib.Networking.Packets
                     return new KeyInfoResponsePacket();
                 case PacketType.ReskinUnlock:
                     return new ReskinUnlockPacket();
+                case PacketType.PlaySound:
+                    return new PlaySoundPacket();
                 default:
                     return null;
             }
