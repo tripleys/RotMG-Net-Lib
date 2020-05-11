@@ -4,7 +4,6 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class TradeDonePacket : IncomingPacket
     {
-
         public TradeResult Result;
 
         public string Description;

@@ -5,14 +5,12 @@ namespace RotMG_Net_Lib.Models
 {
     public class WorldPosData
     {
-
         public float X;
 
         public float Y;
 
         public WorldPosData()
         {
-
         }
 
         public WorldPosData(float X, float Y)
@@ -38,14 +36,14 @@ namespace RotMG_Net_Lib.Models
         {
             float dx = wp.X - X;
             float dy = wp.Y - Y;
-            return (float)Math.Sqrt(dx * dx + dy * dy);
+            return (float) Math.Sqrt(dx * dx + dy * dy);
         }
 
         public float DistanceTo(float x, float y)
         {
             float dx = x - X;
             float dy = y - Y;
-            return (float)Math.Sqrt(dx * dx + dy * dy);
+            return (float) Math.Sqrt(dx * dx + dy * dy);
         }
     }
 }

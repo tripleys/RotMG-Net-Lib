@@ -6,7 +6,7 @@
         public int SoundId;
 
         public override PacketType GetPacketType() => PacketType.PLAYSOUND;
-        
+
         public override void Read(PacketInput input)
         {
             OwnerId = input.ReadInt32();

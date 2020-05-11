@@ -2,7 +2,6 @@
 {
     public class MapInfoPacket : IncomingPacket
     {
-
         public int Width;
         public int Height;
         public string Name;

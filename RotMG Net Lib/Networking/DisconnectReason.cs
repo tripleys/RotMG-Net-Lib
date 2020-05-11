@@ -8,7 +8,9 @@
         public static readonly DisconnectReason ExceptionOnListenerStart = new DisconnectReason("Exception on listener start");
         public static readonly DisconnectReason EmailVerificationNeeded = new DisconnectReason("Email verification needed");
         public static readonly DisconnectReason ProtocolError = new DisconnectReason("Protocol error");
-
+        
+        public static readonly DisconnectReason RequestedByUser = new DisconnectReason("Requested by user");
+        
 
         public readonly string Reason;
 
@@ -16,5 +18,6 @@
         {
             this.Reason = Reason;
         }
+
     }
 }

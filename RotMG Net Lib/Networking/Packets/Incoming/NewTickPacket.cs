@@ -4,7 +4,6 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class NewTickPacket : IncomingPacket
     {
-
         public int TickId;
 
         public int TickTime;

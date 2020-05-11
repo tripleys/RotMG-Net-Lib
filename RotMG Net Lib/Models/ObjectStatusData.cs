@@ -13,7 +13,7 @@ namespace RotMG_Net_Lib.Models
             ObjectId = input.ReadInt32();
             (Pos = new WorldPosData()).Read(input);
             Stats = new StatData[input.ReadInt16()];
-            for(int i = 0; i < Stats.Length; i++)
+            for (int i = 0; i < Stats.Length; i++)
             {
                 (Stats[i] = new StatData()).Read(input);
             }

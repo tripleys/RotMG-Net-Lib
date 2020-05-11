@@ -2,7 +2,6 @@
 {
     public class FailurePacket : IncomingPacket
     {
-        
         public int ErrorId;
         public string ErrorDescription;
 

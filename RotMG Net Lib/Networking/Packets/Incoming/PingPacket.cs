@@ -2,7 +2,6 @@
 {
     public class PingPacket : IncomingPacket
     {
-
         public int Serial;
 
         public override PacketType GetPacketType() => PacketType.PING;

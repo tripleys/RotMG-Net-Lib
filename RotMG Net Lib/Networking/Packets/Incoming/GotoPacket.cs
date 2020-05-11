@@ -4,7 +4,6 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class GotoPacket : IncomingPacket
     {
-
         public int ObjectId;
 
         public WorldPosData Pos;

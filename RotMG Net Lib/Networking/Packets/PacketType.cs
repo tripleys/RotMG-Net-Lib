@@ -1,6 +1,5 @@
 ﻿namespace RotMG_Net_Lib.Networking.Packets
 {
-
     public enum PacketType : byte
     {
         FAILURE = 0,

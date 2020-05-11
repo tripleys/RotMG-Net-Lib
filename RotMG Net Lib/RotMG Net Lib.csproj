@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{ADD0D140-20CA-41CA-A027-22331D6D8573}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>RotMG_Net_Lib</RootNamespace>
     <AssemblyName>RotMG Net Lib</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chars.cs" />
     <Compile Include="Constants\Classes.cs" />
     <Compile Include="Constants\Game.cs" />
     <Compile Include="Crypto\RC4.cs" />
@@ -167,6 +168,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FreeProxy\FreeProxyDatabase\FreeProxyDatabase.csproj">
+      <Project>{6118ffa6-604d-477c-8c03-23a66f9c038a}</Project>
+      <Name>FreeProxyDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Database\Database.csproj">
+      <Project>{a453b466-06fe-4072-835a-acf06926b1e3}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

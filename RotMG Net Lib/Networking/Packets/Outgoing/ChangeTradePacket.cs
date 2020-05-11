@@ -8,7 +8,7 @@
 
         public override void Write(PacketOutput output)
         {
-            output.Write((short)Offer.Length);
+            output.Write((short) Offer.Length);
             foreach (var slot in Offer)
                 output.Write(slot);
         }

@@ -2,7 +2,6 @@
 {
     public class LoadPacket : OutgoingPacket
     {
-
         public int CharId;
         public bool IsFromArena;
         public bool IsChallenger;

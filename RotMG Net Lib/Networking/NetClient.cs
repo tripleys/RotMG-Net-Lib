@@ -26,6 +26,9 @@ namespace RotMG_Net_Lib.Networking
         private RC4 _incomingEncryption;
         private RC4 _outgoingEncryption;
         private Dictionary<PacketType, List<Action<IncomingPacket>>> _hooks = new Dictionary<PacketType, List<Action<IncomingPacket>>>();
+
+        private List<Action<IncomingPacket>> _anyPacketHook = new List<Action<IncomingPacket>>();
+
         private Action _onConnect;
         private Action<DisconnectReason> _onDisconnect;
 
@@ -34,12 +37,12 @@ namespace RotMG_Net_Lib.Networking
 
         public void Connect(Reconnect reconnect, string proxyHost = null, int proxyport = 0)
         {
-            bool UseProxy = (proxyHost != null && proxyport != 0);
+            bool useProxy = (proxyHost != null && proxyport != 0);
 
             _incomingEncryption = new RC4(Utility.HexStringToBytes(IncomingKey));
             _outgoingEncryption = new RC4(Utility.HexStringToBytes(OutgoingKey));
 
-            if (UseProxy)
+            if (useProxy)
             {
                 Log.Info("Connecting using HTTP proxy client...");
                 HttpProxyClient proxyClient = new HttpProxyClient(proxyHost, proxyport);
@@ -60,7 +63,7 @@ namespace RotMG_Net_Lib.Networking
             Start();
             _onConnect?.Invoke();
         }
-        
+
         public void AddConnectionListener(Action onConnect)
         {
             this._onConnect += onConnect;
@@ -69,6 +72,11 @@ namespace RotMG_Net_Lib.Networking
         public void AddDisconnectListener(Action<DisconnectReason> onDisconnect)
         {
             this._onDisconnect += onDisconnect;
+        }
+
+        public void HookAnyPacket(Action<IncomingPacket> action)
+        {
+            _anyPacketHook.Add(action);
         }
 
         public void Hook(PacketType type, Action<IncomingPacket> action)
@@ -152,7 +160,7 @@ namespace RotMG_Net_Lib.Networking
             _incomingEncryption.Cipher(buffer, 0);
             PacketType packetType = type.ToPacketType();
             IncomingPacket packet = IncomingPacket.Create(packetType);
-            if (packet != null && _hooks.ContainsKey(packetType))
+            if (packet != null)
             {
                 MemoryStream ms = new MemoryStream(buffer);
                 using (PacketInput pi = new PacketInput(ms))
@@ -162,15 +170,23 @@ namespace RotMG_Net_Lib.Networking
                     if (DebugPackets) Log.Info("Received " + packet.GetPacketType());
                 }
 
-                foreach (var hook in _hooks[packetType].ToArray())
+                foreach (Action<IncomingPacket> action in _anyPacketHook)
                 {
-                    try
+                    action.Invoke(packet);
+                }
+
+                if (_hooks.ContainsKey(packetType))
+                {
+                    foreach (var hook in _hooks[packetType].ToArray())
                     {
-                        hook(packet);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Info(e);
+                        try
+                        {
+                            hook(packet);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Info(e);
+                        }
                     }
                 }
             }

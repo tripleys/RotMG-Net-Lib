@@ -27,7 +27,6 @@
 
         private void ProcessBytes(byte[] input, int inOff, int length, byte[] output, int outOff)
         {
-
             for (int i = 0; i < length; i++)
             {
                 x = (x + 1) & 0xff;
@@ -37,8 +36,8 @@
                 engineState[x] = engineState[y];
                 engineState[y] = tmp;
 
-                output[i + outOff] = (byte)(input[i + inOff]
-                        ^ engineState[(engineState[x] + engineState[y]) & 0xff]);
+                output[i + outOff] = (byte) (input[i + inOff]
+                                             ^ engineState[(engineState[x] + engineState[y]) & 0xff]);
             }
         }
 
@@ -51,7 +50,7 @@
                 engineState = new byte[STATE_LENGTH];
 
             for (int i = 0; i < STATE_LENGTH; i++)
-                engineState[i] = (byte)i;
+                engineState[i] = (byte) i;
 
             int i1 = 0, i2 = 0;
 

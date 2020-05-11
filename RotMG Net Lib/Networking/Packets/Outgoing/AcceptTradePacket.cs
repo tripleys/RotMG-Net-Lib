@@ -9,10 +9,10 @@
 
         public override void Write(PacketOutput output)
         {
-            output.Write((short)ClientOffer.Length);
+            output.Write((short) ClientOffer.Length);
             foreach (bool slot in ClientOffer)
                 output.Write(slot);
-            output.Write((short)PartnerOffer.Length);
+            output.Write((short) PartnerOffer.Length);
             foreach (bool slot in PartnerOffer)
                 output.Write(slot);
         }

@@ -2,7 +2,6 @@
 {
     public class GotoAckPacket : OutgoingPacket
     {
-
         public int Time;
 
         public override PacketType GetPacketType() => PacketType.GOTOACK;

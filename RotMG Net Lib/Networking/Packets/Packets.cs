@@ -4,7 +4,6 @@ using NLog;
 
 namespace RotMG_Net_Lib.Networking.Packets
 {
-
     public static class Packets
     {
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -48,6 +47,5 @@ namespace RotMG_Net_Lib.Networking.Packets
 
             return PacketTypes[id];
         }
-
     }
 }

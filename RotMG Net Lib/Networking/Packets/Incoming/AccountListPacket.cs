@@ -12,10 +12,11 @@
         {
             AccountListId = input.ReadInt32();
             AccountIds = new string[input.ReadInt16()];
-            for(int i = 0; i < AccountIds.Length; i++)
+            for (int i = 0; i < AccountIds.Length; i++)
             {
                 AccountIds[i] = input.ReadUTF();
             }
+
             LockAction = input.ReadInt32();
         }
     }
