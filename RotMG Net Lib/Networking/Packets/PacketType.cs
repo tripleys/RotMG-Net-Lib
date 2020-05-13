@@ -101,5 +101,6 @@
         PET_CHANGE_SKIN_MSG = 33,
         REALM_HERO_LEFT_MSG = 84,
         RESET_DAILY_QUESTS = 52,
+        UNKNOWN = 255
     }
 }

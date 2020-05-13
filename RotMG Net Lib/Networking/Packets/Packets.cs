@@ -43,6 +43,7 @@ namespace RotMG_Net_Lib.Networking.Packets
             if (!PacketTypes.ContainsKey(id))
             {
                 Log.Error("Fatal, packet id '" + id + "' not found.");
+                return PacketType.UNKNOWN;
             }
 
             return PacketTypes[id];

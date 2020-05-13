@@ -178,6 +178,10 @@
       <Project>{a453b466-06fe-4072-835a-acf06926b1e3}</Project>
       <Name>Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utils\Utils.csproj">
+      <Project>{73cb6824-9025-4496-bd34-77d0b4a1128f}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
