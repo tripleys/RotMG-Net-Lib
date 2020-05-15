@@ -5,7 +5,9 @@ RotMG-Net-Lib is an updated and fully working C# port of the RotMG networking lo
 
 It is used in our [community-driven RotMG port](https://github.com/RealmDev/RotMG-Clone).
 
-Contributors
+
+# Contributors
+
 
 Originally created by [tripleys](https://github.com/tripleys/RotMG-Net-Lib)
 
