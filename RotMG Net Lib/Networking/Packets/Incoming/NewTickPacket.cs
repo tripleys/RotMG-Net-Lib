@@ -1,22 +1,16 @@
 ﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class NewTickPacket : IncomingPacket
     {
-
         public int TickId;
 
         public int TickTime;
 
         public ObjectStatusData[] Statuses;
 
-        public override PacketType GetPacketType() => PacketType.NewTick;
+        public override PacketType GetPacketType() => PacketType.NEWTICK;
 
         public override void Read(PacketInput input)
         {

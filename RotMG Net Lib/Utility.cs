@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Net_Lib
 {
@@ -19,8 +16,9 @@ namespace RotMG_Net_Lib
             {
                 StringBuilder sb = new StringBuilder(2).Append(c[i]).Append(c[(i + 1)]);
                 int j = Convert.ToInt32(sb.ToString(), 16);
-                bytes[(i / 2)] = (byte)j;
+                bytes[(i / 2)] = (byte) j;
             }
+
             return bytes;
         }
     }

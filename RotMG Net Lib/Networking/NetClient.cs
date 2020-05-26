@@ -4,17 +4,19 @@ using RotMG_Net_Lib.Networking.Packets;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using NLog;
+using NLog.Targets;
+using Starksoft.Aspen.Proxy;
+using Utils.Utils;
 
 namespace RotMG_Net_Lib.Networking
 {
     public class NetClient
     {
+        public static Logger Log = LogManager.GetCurrentClassLogger();
 
         private const int HeadSize = 5;
 
@@ -26,39 +28,74 @@ namespace RotMG_Net_Lib.Networking
         private RC4 _incomingEncryption;
         private RC4 _outgoingEncryption;
         private Dictionary<PacketType, List<Action<IncomingPacket>>> _hooks = new Dictionary<PacketType, List<Action<IncomingPacket>>>();
+
+        private List<Action<IncomingPacket>> _anyPacketHook = new List<Action<IncomingPacket>>();
+
         private Action _onConnect;
-        private Action _onDisconnect;
+        private Action<DisconnectReason> _onDisconnect;
 
         public bool Disconnected = true;
+        private readonly bool DebugPackets = false;
 
-        public NetClient()
+        public bool OnDisconnectHasBeenCalled;
+
+        static NetClient()
         {
+            LoggingUtils.SetupLogging();
         }
-
-        public NetClient(Reconnect reconnect) => Connect(reconnect);
-
-        public void Connect(Reconnect reconnect)
+        
+        public void Connect(Reconnect reconnect, string proxyHost = null, int proxyport = 0)
         {
+            bool useProxy = (proxyHost != null && proxyport != 0);
+
+            OnDisconnectHasBeenCalled = false;
+
             _incomingEncryption = new RC4(Utility.HexStringToBytes(IncomingKey));
             _outgoingEncryption = new RC4(Utility.HexStringToBytes(OutgoingKey));
-            _socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
-            _socket.Connect(new IPEndPoint(IPAddress.Parse(reconnect.Host), reconnect.Port));
-            Disconnected = false;
-            _socket.NoDelay = true;
-            _socket.ReceiveTimeout = 5000;
-            _socket.SendTimeout = 5000;
-            Start();
-            _onConnect?.Invoke();
+
+            try
+            {
+                if (useProxy)
+                {
+                    Log.Info("Connecting using HTTP proxy client...");
+                    HttpProxyClient proxyClient = new HttpProxyClient(proxyHost, proxyport);
+                    TcpClient client = proxyClient.CreateConnection(reconnect.Host, reconnect.Port);
+                    _socket = client.Client;
+                }
+                else
+                {
+                    Log.Info("Connecting no using proxy!");
+                    _socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+                    _socket.Connect(new IPEndPoint(IPAddress.Parse(reconnect.Host), reconnect.Port));
+                }
+
+                _socket.NoDelay = true;
+                _socket.ReceiveTimeout = 5000;
+                _socket.SendTimeout = 5000;
+                Disconnected = false;
+                Start();
+                _onConnect?.Invoke();
+            }
+            catch (Exception e)
+            {
+                Log.Error("Disconnecting due to error : " + e.Message);
+                Disconnect(DisconnectReason.ExceptionOnConnection.SetDetails(e.Message));
+            }
         }
 
         public void AddConnectionListener(Action onConnect)
         {
-            this._onConnect = onConnect;
+            this._onConnect += onConnect;
         }
 
-        public void AddDisconnectListener(Action onDisconnect)
+        public void AddDisconnectListener(Action<DisconnectReason> onDisconnect)
         {
-            this._onDisconnect = onDisconnect;
+            this._onDisconnect += onDisconnect;
+        }
+
+        public void HookAnyPacket(Action<IncomingPacket> action)
+        {
+            _anyPacketHook.Add(action);
         }
 
         public void Hook(PacketType type, Action<IncomingPacket> action)
@@ -67,6 +104,7 @@ namespace RotMG_Net_Lib.Networking
             {
                 _hooks[type] = new List<Action<IncomingPacket>>();
             }
+
             _hooks[type].Add(action);
         }
 
@@ -79,8 +117,8 @@ namespace RotMG_Net_Lib.Networking
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                Disconnect();
+                Log.Error(e);
+                Disconnect(DisconnectReason.ExceptionOnListenerStart.SetDetails(e.Message));
             }
         }
 
@@ -88,8 +126,6 @@ namespace RotMG_Net_Lib.Networking
         {
             try
             {
-
-
                 while (!Disconnected)
                 {
                     byte[] head = new byte[HeadSize];
@@ -101,11 +137,13 @@ namespace RotMG_Net_Lib.Networking
                         if (read == 0)
                         {
                             // eof
-                            Disconnect();
+                            Disconnect(DisconnectReason.EofHead.SetDetails("Read was 0."));
                             return;
                         }
+
                         received += read;
                     }
+
                     int size = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(head, 0));
                     byte type = head[4];
                     ProcessPacket(type, size - 5);
@@ -113,63 +151,100 @@ namespace RotMG_Net_Lib.Networking
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-            }
-            finally
-            {
-                Disconnect();
+                Log.Debug(e);
+                Disconnect(DisconnectReason.ExceptionOnListener.SetDetails(e.Message));
             }
         }
 
         private void ProcessPacket(byte type, int size)
         {
-            byte[] buffer = new byte[size];
-            int received = 0;
-            while (received < size)
+            try
             {
-                int read = _socket.Receive(buffer, received, size - received, SocketFlags.None);
-                if (read == 0)
+                byte[] buffer = new byte[size];
+                int received = 0;
+                while (received < size)
                 {
-                    // eof
-                    Disconnect();
+                    int read = _socket.Receive(buffer, received, size - received, SocketFlags.None);
+                    if (read == 0)
+                    {
+                        // eof
+                        Disconnect(DisconnectReason.EofBody.SetDetails("Read was 0."));
+                        return;
+                    }
+
+                    received += read;
+                }
+
+                _incomingEncryption.Cipher(buffer, 0);
+                PacketType packetType = type.ToPacketType();
+
+                if (packetType == PacketType.UNKNOWN)
+                {
                     return;
                 }
-                received += read;
+                
+                IncomingPacket packet = IncomingPacket.Create(packetType);
+                if (packet != null)
+                {
+                    MemoryStream ms = new MemoryStream(buffer);
+                    using (PacketInput pi = new PacketInput(ms))
+                    {
+                        packet.Read(pi);
+
+                        if (DebugPackets) Log.Info("Received " + packet.GetPacketType());
+                    }
+
+                    foreach (Action<IncomingPacket> action in _anyPacketHook)
+                    {
+                        action.Invoke(packet);
+                    }
+
+                    if (_hooks.ContainsKey(packetType))
+                    {
+                        foreach (var hook in _hooks[packetType].ToArray())
+                        {
+                            try
+                            {
+                                hook(packet);
+                            }
+                            catch (Exception e)
+                            {
+                                Log.Info(e);
+                            }
+                        }
+                    }
+                }
             }
-            _incomingEncryption.Cipher(buffer, 0);
-            PacketType packetType = type.ToPacketType();
-            IncomingPacket packet = IncomingPacket.Create(packetType);
-            if (packet != null && _hooks.ContainsKey(packetType))
+            catch (Exception e)
             {
-                MemoryStream ms = new MemoryStream(buffer);
-                using (PacketInput pi = new PacketInput(ms))
-                {
-                    packet.Read(pi);
-                }
-                foreach (var hook in _hooks[packetType].ToArray())
-                {
-                    try
-                    {
-                        hook(packet);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
-                }
+                Disconnect(DisconnectReason.ExceptionOnProcessPacket.SetDetails(e.Message));
             }
         }
 
         public void SendPacket(OutgoingPacket packet)
         {
-            if (!_socket.Connected) return;
+            if (_socket == null)
+            {
+                //Log.Error("Socket is null...");
+                return;
+            }
+
+            if (!_socket.Connected)
+            {
+                //Log.Error("Socket is not connected.");
+                return;
+            }
+
             MemoryStream ms = new MemoryStream();
             using (PacketOutput output = new PacketOutput(ms))
             {
                 output.Write(0);
                 output.Write(packet.GetPacketType().ToId());
                 packet.Write(output);
+
+                if (DebugPackets) Log.Info("Sent " + packet.GetPacketType());
             }
+
             byte[] buffer = ms.ToArray();
             _outgoingEncryption.Cipher(buffer, 5);
             int size = buffer.Length;
@@ -181,15 +256,25 @@ namespace RotMG_Net_Lib.Networking
             _socket?.Send(buffer);
         }
 
-        public void Disconnect()
+
+        public void Disconnect(DisconnectReason reason)
         {
+            if (!OnDisconnectHasBeenCalled)
+            {
+                OnDisconnectHasBeenCalled = true;
+                _onDisconnect?.Invoke(reason);
+            }
 
             if (!Disconnected)
             {
                 Disconnected = true;
-                _onDisconnect?.Invoke();
                 _socket?.Close();
             }
+        }
+
+        protected int GetTimer()
+        {
+            return (int) Environment.TickCount;
         }
     }
 }

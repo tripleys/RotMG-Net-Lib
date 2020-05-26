@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Net_Lib.Networking.Packets
 {
@@ -12,7 +9,6 @@ namespace RotMG_Net_Lib.Networking.Packets
     {
         public PacketInput(Stream s) : base(s)
         {
-            
         }
 
         public override short ReadInt16()
@@ -22,7 +18,7 @@ namespace RotMG_Net_Lib.Networking.Packets
 
         public override ushort ReadUInt16()
         {
-            return (ushort)IPAddress.NetworkToHostOrder((short)base.ReadUInt16());
+            return (ushort) IPAddress.NetworkToHostOrder((short) base.ReadUInt16());
         }
 
         public override int ReadInt32()

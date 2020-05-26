@@ -1,9 +1,4 @@
 ﻿using RotMG_Net_Lib.Networking.Packets.Incoming;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Net_Lib.Networking.Packets
 {
@@ -11,72 +6,74 @@ namespace RotMG_Net_Lib.Networking.Packets
     {
         public static IncomingPacket Create(PacketType type)
         {
-            switch(type)
+            switch (type)
             {
-                case PacketType.Failure:
+                case PacketType.FAILURE:
                     return new FailurePacket();
-                case PacketType.MapInfo:
+                case PacketType.MAPINFO:
                     return new MapInfoPacket();
-                case PacketType.Update:
+                case PacketType.UPDATE:
                     return new UpdatePacket();
-                case PacketType.NewTick:
+                case PacketType.NEWTICK:
                     return new NewTickPacket();
-                case PacketType.Goto:
+                case PacketType.GOTO:
                     return new GotoPacket();
-                case PacketType.Ping:
+                case PacketType.PING:
                     return new PingPacket();
-                case PacketType.CreateSuccess:
+                case PacketType.CREATE_SUCCESS:
                     return new CreateSuccessPacket();
-                case PacketType.Notification:
+                case PacketType.NOTIFICATION:
                     return new NotificationPacket();
-                case PacketType.Damage:
+                case PacketType.DAMAGE:
                     return new DamagePacket();
-                case PacketType.Text:
+                case PacketType.TEXT:
                     return new TextPacket();
-                case PacketType.Reconnect:
+                case PacketType.RECONNECT:
                     return new ReconnectPacket();
-                case PacketType.AccountList:
+                case PacketType.ACCOUNTLIST:
                     return new AccountListPacket();
-                case PacketType.ServerPlayerShoot:
+                case PacketType.SERVERPLAYERSHOOT:
                     return new ServerPlayerShootPacket();
-                case PacketType.TradeRequested:
+                case PacketType.TRADEREQUESTED:
                     return new TradeRequestedPacket();
-                case PacketType.TradeStart:
+                case PacketType.TRADESTART:
                     return new TradeStartPacket();
-                case PacketType.TradeDone:
+                case PacketType.TRADEDONE:
                     return new TradeDonePacket();
-                case PacketType.TradeChanged:
+                case PacketType.TRADECHANGED:
                     return new TradeChangedPacket();
-                case PacketType.TradeAccepted:
+                case PacketType.TRADEACCEPTED:
                     return new TradeAcceptedPacket();
-                case PacketType.Death:
+                case PacketType.DEATH:
                     return new DeathPacket();
-                case PacketType.Aoe:
+                case PacketType.AOE:
                     return new AoePacket();
-                case PacketType.ClientStat:
+                case PacketType.CLIENTSTAT:
                     return new ClientStatPacket();
-                case PacketType.NameResult:
+                case PacketType.NAMERESULT:
                     return new NameResultPacket();
-                case PacketType.ShowEffect:
+                case PacketType.SHOWEFFECT:
                     return new ShowEffectPacket();
-                case PacketType.GlobalNotification:
+                case PacketType.GLOBAL_NOTIFICATION:
                     return new GlobalNotificationPacket();
-                case PacketType.QuestRedeemResponse:
+                case PacketType.QUEST_REDEEM_RESPONSE:
                     return new QuestRedeemResponsePacket();
-                case PacketType.QuestObjId:
+                case PacketType.QUESTOBJID:
                     return new QuestObjIdPacket();
-                case PacketType.VerifyEmail:
+                case PacketType.VERIFY_EMAIL:
                     return new VerifyEmailPacket();
-                case PacketType.RealmHeroLeftMsg:
+                case PacketType.REALM_HERO_LEFT_MSG:
                     return new RealmHeroesResponsePacket();
-                case PacketType.GuildResult:
+                case PacketType.GUILDRESULT:
                     return new GuildResultPacket();
-                case PacketType.AllyShoot:
+                case PacketType.ALLYSHOOT:
                     return new AllyShootPacket();
-                case PacketType.KeyInfoResponse:
+                case PacketType.KEY_INFO_RESPONSE:
                     return new KeyInfoResponsePacket();
-                case PacketType.ReskinUnlock:
+                case PacketType.RESKIN_UNLOCK:
                     return new ReskinUnlockPacket();
+                case PacketType.PLAYSOUND:
+                    return new PlaySoundPacket();
                 default:
                     return null;
             }

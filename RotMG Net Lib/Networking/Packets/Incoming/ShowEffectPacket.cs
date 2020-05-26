@@ -1,9 +1,4 @@
 ﻿using RotMG_Net_Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
@@ -16,14 +11,14 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public int Color;
         public float Duration;
 
-        public override PacketType GetPacketType() => PacketType.ShowEffect;
+        public override PacketType GetPacketType() => PacketType.SHOWEFFECT;
 
         public override void Read(PacketInput input)
         {
             EffectType = input.ReadByte();
             TargetObjectId = input.ReadInt32();
-            Pos1.Read(input);
-            Pos2.Read(input);
+            Pos1 = new WorldPosData().Read(input);
+            Pos2 = new WorldPosData().Read(input);
             Color = input.ReadInt32();
             Duration = input.ReadSingle();
         }

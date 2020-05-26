@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>RotMG_Net_Lib</RootNamespace>
     <AssemblyName>RotMG Net Lib</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -42,8 +42,21 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c">
+      <HintPath>..\packages\NLog.4.7.0\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="starksoft.aspen, Version=1.1.8.0, Culture=neutral, PublicKeyToken=56b8923a24d03eb3">
+      <HintPath>..\packages\starksoft.aspen.1.1.8\lib\net45\starksoft.aspen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chars.cs" />
+    <Compile Include="Constants\Classes.cs" />
+    <Compile Include="Constants\Game.cs" />
     <Compile Include="Crypto\RC4.cs" />
     <Compile Include="Crypto\RSA.cs" />
     <Compile Include="Data\GameIds.cs" />
@@ -65,6 +81,7 @@
     <Compile Include="Models\TradeItem.cs" />
     <Compile Include="Models\TradeResult.cs" />
     <Compile Include="Models\WorldPosData.cs" />
+    <Compile Include="Networking\DisconnectReason.cs" />
     <Compile Include="Networking\NetClient.cs" />
     <Compile Include="Networking\Packets\IncomingPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\AccountListPacket.cs" />
@@ -85,6 +102,7 @@
     <Compile Include="Networking\Packets\Incoming\NewTickPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\NotificationPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\PingPacket.cs" />
+    <Compile Include="Networking\Packets\Incoming\PlaySoundPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\QuestObjIdPacket.cs" />
     <Compile Include="Networking\Packets\Incoming\QuestRedeemResponsePacket.cs" />
     <Compile Include="Networking\Packets\Incoming\RealmHeroesResponsePacket.cs" />
@@ -109,7 +127,6 @@
     <Compile Include="Networking\Packets\Outgoing\ChangeGuildRankPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\ChangePetSkinPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\ChangeTradePacket.cs" />
-    <Compile Include="Networking\Packets\Outgoing\ChatHelloPacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\ChooseNamePacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\CreatePacket.cs" />
     <Compile Include="Networking\Packets\Outgoing\EditAccountListPacket.cs" />
@@ -151,6 +168,20 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FreeProxy\FreeProxyDatabase\FreeProxyDatabase.csproj">
+      <Project>{6118ffa6-604d-477c-8c03-23a66f9c038a}</Project>
+      <Name>FreeProxyDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Database\Database.csproj">
+      <Project>{a453b466-06fe-4072-835a-acf06926b1e3}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utils\Utils.csproj">
+      <Project>{73cb6824-9025-4496-bd34-77d0b4a1128f}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

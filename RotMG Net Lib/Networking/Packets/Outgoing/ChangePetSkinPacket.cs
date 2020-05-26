@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Outgoing
+﻿namespace RotMG_Net_Lib.Networking.Packets.Outgoing
 {
     public class ChangePetSkinPacket : OutgoingPacket
     {
@@ -12,7 +6,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Outgoing
         public int SkinType;
         public int Currency;
 
-        public override PacketType GetPacketType() => PacketType.PetChangeSkinMsg;
+        public override PacketType GetPacketType() => PacketType.PET_CHANGE_SKIN_MSG;
 
         public override void Write(PacketOutput output)
         {

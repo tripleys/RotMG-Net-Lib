@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Net_Lib.Networking.Packets
 {
@@ -21,7 +18,7 @@ namespace RotMG_Net_Lib.Networking.Packets
 
         public override void Write(ushort value)
         {
-            base.Write((ushort)IPAddress.HostToNetworkOrder((short)value));
+            base.Write((ushort) IPAddress.HostToNetworkOrder((short) value));
         }
 
         public override void Write(int value)
@@ -38,7 +35,7 @@ namespace RotMG_Net_Lib.Networking.Packets
 
         public void WriteUTF(string s)
         {
-            Write((short)s.Length);
+            Write((short) s.Length);
             base.Write(Encoding.UTF8.GetBytes(s));
         }
 

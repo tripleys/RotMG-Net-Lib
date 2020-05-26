@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RotMG_Net_Lib.Networking.Packets.Incoming
+﻿namespace RotMG_Net_Lib.Networking.Packets.Incoming
 {
     public class AllyShootPacket : IncomingPacket
     {
@@ -13,7 +7,7 @@ namespace RotMG_Net_Lib.Networking.Packets.Incoming
         public short ContainerType;
         public float Angle;
 
-        public override PacketType GetPacketType() => PacketType.AllyShoot;
+        public override PacketType GetPacketType() => PacketType.ALLYSHOOT;
 
         public override void Read(PacketInput input)
         {
