@@ -48,7 +48,7 @@ Example class:
             });	
             HelloPacket hello = new HelloPacket()	
             {	
-                BuildVersion = "X31.2.3",	
+                BuildVersion = "X34.1.0",	
                 GameId = reconnect.GameId,	
                 Guid = RSA.Instance.Encrypt("your email"),	
                 Password = RSA.Instance.Encrypt("your password"),	
